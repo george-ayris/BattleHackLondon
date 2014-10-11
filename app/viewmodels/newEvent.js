@@ -1,5 +1,12 @@
 define(["durandal/app", "plugins/http", "knockout"], function (app, http, ko) {
     var vm = {};
+    vm.canActivate = function() {
+        if (app.loggedIn) {
+            return true;
+        }
+        return false;
+    }
+
     // Want to put a default date in, but bringing in jquery appears to break it
     //$('inputDate').attr("placeholder",new Date()).format("dd/mm/yy");
 
