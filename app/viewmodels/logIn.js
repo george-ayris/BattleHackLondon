@@ -4,6 +4,7 @@ define(["durandal/app", "plugins/router"], function(app, router) {
 
     vm.logIn = function() {
             app.loggedIn = true;
+            app.userId = 3;
             router.navigate('dashboard');
     };
 
