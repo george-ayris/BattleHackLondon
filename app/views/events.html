@@ -1,0 +1,18 @@
+<div class="page-header">
+    <h1 data-bind="text: eventTitle"></h1>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+    <h3 class="panel-title" data-bind="text: dateAndTime"></h3>
+</div>
+<div class="panel-body">
+    <i data-bind="text: description" class="event-description"></i>
+    <div>Attendees:
+        <span data-bind="foreach: users">
+            <a class="label label-primary" data-bind="attr: { href: '#users/' + id }, text: $data.name" /> 
+        </span>
+    </div>
+    <div>(between <span data-bind="text: minPeople"></span> and <span data-bind="text: maxPeople"></span> required).</div>
+    <div>Price is <span data-bind="text: pricePerPerson"></span> each.</div>
+</div>
+</div>
