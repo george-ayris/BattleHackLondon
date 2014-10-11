@@ -1,0 +1,19 @@
+<!--ko ifnot: loggedIn-->
+<a href="#newEvent" >
+    <button class="btn btn-default">
+        Create new event
+    </button>
+</a>
+
+<div class="page-header">
+    <h1>My Events</h1>
+</div>
+<div class="panel panel-default">
+<!--ko ifnot: eventsReturned-->
+<div class="panel-heading">
+    <h3 class="panel-title">You have no events</h3>
+</div>
+<div class="panel-body"><a href="#newEvent">Create one now!</a></div>
+<!--/ko-->
+</div>
+<!--/ko-->
