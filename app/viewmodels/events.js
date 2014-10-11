@@ -23,7 +23,7 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout", "jquery"],
         var eventUrl = "events/445915f95c2947e5a70619f9ec61219d";
         var userUrl = "profile/ecbf9d0767d04e619289e25018ae48e6";
         var headers = { Authorization: "BATTLEHACK 5f2e6a9b7936f2844eacedd402ca5ee7c11acce4" }
-        var getRequest = http.get(rootUrl + userUrl, {}, headers);
+        var getRequest = http.get(rootUrl, {}, headers);
         getRequest.done(function (data) { console.log(data); } );
         getRequest.fail(function () { console.log("event get failed") } );
 
