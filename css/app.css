@@ -7,20 +7,19 @@
 }
 
 #applicationHost.splash {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background: #ccc;
-        text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #ccc;
+    text-align: center;
+}
 
-        h1 {
-            font-variant: small-caps;
-            padding: 100px 0;
-            margin: 0;
-        }
-    }
+#applicationHost.h1 {
+    font-variant: small-caps;
+    padding: 100px 0;
+    margin: 0;
 }
 
 .router-loader {
