@@ -11,6 +11,7 @@
                 { route: 'profile', hash: '#/profile', moduleId: 'viewmodels/profile', nav: true },
                 { route: 'newEvent', hash: '#/newEvent', moduleId: 'viewmodels/newEvent', nav: false },
                 { route: 'events/:id', moduleId: 'viewmodels/events', nav: false },
+                { route: 'register', hash: '#/register', moduleId: 'viewmodels/register', nav: false },
                 /*{durandal:routes}*/
             ]).buildNavigationModel();
 
