@@ -8,10 +8,10 @@
 
         activate: function () {
             router.map([
-                { route: '', moduleId: 'viewmodels/home', title: "Home", nav: true },
+                { route: '', moduleId: 'viewmodels/logIn', title: 'Log In', nav: true },
                 /*{durandal:routes}*/
             ]).buildNavigationModel();
-            
+
             return router.activate();
         }
     };
