@@ -5,7 +5,7 @@ define(["durandal/app", "plugins/http"], function (app, http) {
         if (app.loggedIn) {
             return true;
         }
-        return { redirect:'#/logIn' };
+        return { redirect:'#/login' };
     }
 
     vm.newEvent = function() {
