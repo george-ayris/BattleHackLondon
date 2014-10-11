@@ -1,4 +1,4 @@
-define(['plugins/router', "durandal/app"], function (router, app) {
+﻿define(['plugins/router', "durandal/app"], function (router, app) {
     return {
         router: router,
 
@@ -8,10 +8,9 @@ define(['plugins/router', "durandal/app"], function (router, app) {
 
         activate: function () {
             router.map([
-                { route: '', moduleId: 'viewmodels/home', title: "Home", nav: true },
+                { route: '', moduleId: 'viewmodels/logIn', title: 'Log In', nav: true },
                 { route: 'dashboard', moduleId: 'viewmodels/dashboard', nav: true },
                 { route: 'newEvent', moduleId: 'viewmodels/newEvent', nav: false },
-                { route: '', moduleId: 'viewmodels/logIn', title: 'Log In', nav: true },
                 /*{durandal:routes}*/
             ]).buildNavigationModel();
 
