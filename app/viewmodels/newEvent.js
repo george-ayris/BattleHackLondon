@@ -39,6 +39,7 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout"], function 
             }
         });
         postResultPromise.fail( function(resp) { console.log("event post failed", resp) } );
+        return postResultPromise;
     };
 
     return vm;

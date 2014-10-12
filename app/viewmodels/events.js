@@ -1,21 +1,4 @@
 define(["durandal/app", "plugins/http", "plugins/router", "knockout", "jquery"], function (app, http, router, ko, $) {
-    // Get data from server
-
-
-    // var data = {
-    //     title: "Ooh football",
-    //     desc: "A bit of footy",
-    //     users: [
-    //         { name: "Jim", id: "2"},
-    //         { name: "Steve", id: "1"},
-    //         { name: "Clara", id: "4"}
-    //     ],
-    //     date: "08/04/2015",
-    //     minPeople: 4,
-    //     maxPeople: 10,
-    //     sport: "football",
-    //     price: 10
-    // };
     var vm = {};
 
     vm.activate = function() {
