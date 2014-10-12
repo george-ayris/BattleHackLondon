@@ -31,7 +31,7 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout"], function 
         vm.postCode.subscribe(function(newPostCode) {
             // geocode
             console.log("postcode updated to", newPostCode);
-            var geocodeUrl = "http://maps.googleapis.com/maps/api/geocode/json?address=" + newPostCode + ",+UK&sensor=false";
+            var geocodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + newPostCode + ",+UK&sensor=false";
             var geocodeResult = http.get(geocodeUrl);
 
             geocodeResult.done(function(resp) {
