@@ -68,6 +68,7 @@ body {
 }
 
 #map-canvas { height: 200px; width: 100%; margin-bottom: 20px; padding: 0;}
+#large-map-canvas { height: 500px; width: 100%; margin-bottom: 20px; padding: 0;}
 
 input::-webkit-input-placeholder {
     color: red;

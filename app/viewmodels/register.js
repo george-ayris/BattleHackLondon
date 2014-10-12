@@ -33,7 +33,7 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(
                 region: vm.region,
                 postal_code: vm.postCOde
             },
-            phone_number: phone
+            phone_number: vm.phone
         });
         postResultPromise.done( function(resp) {
              console.log(resp);
