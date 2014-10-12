@@ -26,7 +26,7 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout"], function 
                 title: vm.name,
                 activity: vm.sport,
                 description: vm.description,
-                date: vm.sport,
+                date: vm.date,
                 min: vm.minPeople,
                 max: vm.maxPeople,
                 price: vm.cost

@@ -11,21 +11,7 @@ define(["durandal/app", "plugins/http", "knockout", "braintree"], function (app,
 
     vm.activate = function() {
         var userUrl = "profile/" + app.userId;
-        var tokenUrl = "payment/token";
 
-        var tokenRequest = http.get(app.rootUrl + tokenUrl, {}, app.headers);
-
-        tokenRequest.done(function (resp) {
-            console.log(resp);
-            var token = resp.client_token;
-
-            braintree.setup(token, 'dropin', {
-                container: 'dropin',
-                paymentMethodNonceReceived: function (event, nonce) {
-
-                }
-            });
-        });
 
         var profileRequest = http.get(app.rootUrl + userUrl, {}, app.headers);
 
@@ -37,6 +23,30 @@ define(["durandal/app", "plugins/http", "knockout", "braintree"], function (app,
         profileRequest.fail(function() { console.log("profile request failed"); } );
 
         return profileRequest;
-    }
+    };
+
+    vm.attached = function() {
+        var tokenUrl = "payment/token";
+
+        var tokenRequest = http.get(app.rootUrl + tokenUrl, {}, app.headers);
+
+        tokenRequest.done(function (resp) {
+            console.log(resp);
+            var token = resp.client_token;
+
+            braintree.setup(token, 'dropin', {
+                container: 'dropin',
+                paymentMethodNonceReceived: function (event, nonce) {
+                    console.log("nonce", nonce);
+                    var nonceUrl = "payment/add/" + nonce;
+                    var noncePost = http.post(app.rootUrl + nonceUrl, {}, app.headers);
+
+                    noncePost.done( function(resp) { console.log("successful nonce", resp); });
+                    noncePost.fail( function(resp) { console.log("nonce post failed", resp); });
+                }
+            });
+        });
+    };
+
     return vm;
 });
