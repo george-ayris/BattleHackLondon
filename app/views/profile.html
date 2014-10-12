@@ -1,4 +1,18 @@
-<form id="checkout" method="post" action="/checkout">
-  <div id="dropin"></div>
-  <input type="submit" class="btn btn-default" value="Pay $10">
-</form>
+<div class="page-header">
+    <h1 data-bind="text: firstName + ' ' + lastName"></h1>
+    <h3 data-bind="text: email"></h3>
+</div>
+
+<div data-bind="ifnot: nonce">
+    <form id="checkout" method="post" action="/checkout">
+      <div id="dropin"></div>
+      <input type="submit" class="btn btn-default" value="Submit details">
+    </form>
+</div>
+<div data-bind="if: nonce">
+    <div class="panel panel-default" data-bind="if: events.length === 0">
+        <div class="panel-body">
+            Payment has been set up successfully.
+        </div>
+    </div>
+</div>

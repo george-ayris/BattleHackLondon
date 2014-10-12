@@ -17,7 +17,10 @@ define(["durandal/app", "plugins/http", "knockout", "braintree"], function (app,
 
         profileRequest.done(function (resp) {
             console.log(resp);
-
+            vm.firstName = resp.data.first_name;
+            vm.lastName = resp.data.last_name;
+            vm.email = resp.data.email;
+            vm.nonce = resp.data.braintree_token;
         });
 
         profileRequest.fail(function() { console.log("profile request failed"); } );
@@ -26,26 +29,28 @@ define(["durandal/app", "plugins/http", "knockout", "braintree"], function (app,
     };
 
     vm.attached = function() {
-        var tokenUrl = "payment/token";
+        if (!vm.nonce) {
+            var tokenUrl = "payment/token";
 
-        var tokenRequest = http.get(app.rootUrl + tokenUrl, {}, app.headers);
+            var tokenRequest = http.get(app.rootUrl + tokenUrl, {}, app.headers);
 
-        tokenRequest.done(function (resp) {
-            console.log(resp);
-            var token = resp.client_token;
+            tokenRequest.done(function (resp) {
+                console.log(resp);
+                var token = resp.client_token;
 
-            braintree.setup(token, 'dropin', {
-                container: 'dropin',
-                paymentMethodNonceReceived: function (event, nonce) {
-                    console.log("nonce", nonce);
-                    var nonceUrl = "payment/add/" + nonce;
-                    var noncePost = http.post(app.rootUrl + nonceUrl, {}, app.headers);
+                braintree.setup(token, 'dropin', {
+                    container: 'dropin',
+                    paymentMethodNonceReceived: function (event, nonce) {
+                        console.log("nonce", nonce);
+                        var nonceUrl = "payment/add/" + nonce;
+                        var noncePost = http.post(app.rootUrl + nonceUrl, {}, app.headers);
 
-                    noncePost.done( function(resp) { console.log("successful nonce", resp); });
-                    noncePost.fail( function(resp) { console.log("nonce post failed", resp); });
-                }
+                        noncePost.done( function(resp) { console.log("successful nonce", resp); });
+                        noncePost.fail( function(resp) { console.log("nonce post failed", resp); });
+                    }
+                });
             });
-        });
+        }
     };
 
     return vm;
