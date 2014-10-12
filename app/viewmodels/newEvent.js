@@ -8,6 +8,14 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout"], function 
             return { redirect:'#/login' };
         }
 
+        vm.attached = function() {
+            var mapOptions = {
+                center: { lat: 51.5, lng: -0.019},
+                zoom: 14
+            };
+            vm.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        }
+
         // Want to put a default date in, but bringing in jquery appears to break it
         //$('inputDate').attr("placeholder",new Date()).format("dd/mm/yy");
 
@@ -18,6 +26,26 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout"], function 
         vm.minPeople = ko.observable('');
         vm.maxPeople = ko.observable('');
         vm.cost = ko.observable('');
+        vm.postCode = ko.observable('');
+
+        vm.postCode.subscribe(function(newPostCode) {
+            // geocode
+            console.log("postcode updated to", newPostCode);
+            var geocodeUrl = "http://maps.googleapis.com/maps/api/geocode/json?address=" + newPostCode + ",+UK&sensor=false";
+            var geocodeResult = http.get(geocodeUrl);
+
+            geocodeResult.done(function(resp) {
+                console.log(resp);
+                var latLng = resp.results[0].geometry.location;
+                vm.lat = latLng.lat;
+                vm.lng = latLng.lng;
+                console.log(vm.lat, vm.lng);
+
+                vm.map.setOptions({
+                    center: { lat: vm.lat, lng: vm.lng},
+                });
+            });
+        });
 
         vm.createEvent = function() {
             var createEventUrl = "events"
