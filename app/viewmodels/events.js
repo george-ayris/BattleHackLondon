@@ -19,10 +19,9 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout", "jquery"],
     var vm = {};
 
     vm.activate = function() {
-        var eventUrl = "events/445915f95c2947e5a70619f9ec61219d";
-        var userUrl = "profile/ecbf9d0767d04e619289e25018ae48e6";
+        var eventUrl = "events/" + router.activeInstruction().params[0];
 
-        var getRequest = http.get(rootUrl + eventUrl, {}, headers);
+        var getRequest = http.get(app.rootUrl + eventUrl, {}, app.headers);
 
         getRequest.done(function (resp) {
             console.log(router.activeInstruction().params[0]);

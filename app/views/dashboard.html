@@ -1,14 +1,19 @@
-<a href="#/newEvent" >
-    <button class="btn btn-default">
-        Create new event
-    </button>
-</a>
-
 <div class="page-header">
-    <h1>My Events</h1>
+    <div class="row">
+        <h1>My Events
+            <span class="pull-right">
+                <a href="#/newEvent" >
+                    <button class="btn btn-default">
+                        Create new event
+                    </button>
+                </a>
+            </span>
+        </h1>
+    </div>
 </div>
-<!--ko if: eventsNotReturned-->
-<div class="panel panel-default">
+
+<div data-bind="if: events.length === 0">
+<div class="panel panel-default" data-bind="if: events.length === 0">
     <div class="panel-heading">
         <h3 class="panel-title">You have no events</h3>
     </div>
@@ -16,14 +21,17 @@
         <a href="#newEvent">Create one now!</a>
     </div>
 </div>
-<!--/ko-->
+</div>
+
 <div data-bind="foreach: events">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" data-bind="text: $data.title"></h3>
+            <a data-bind="attr: { href: '#/events/' + $data.id }">
+                <h3 class="panel-title" data-bind="text: $data.title"></h3>
+            </a>
         </div>
-        <div class="panel-body">
-            <a href="#newEvent">Create one now!</a>
+        <div class="panel-body" data-bind="text: $data.description">
+
         </div>
     </div>
 </div>

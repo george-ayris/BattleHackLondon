@@ -12,19 +12,16 @@ define(["durandal/app", "plugins/http"], function (app, http) {
         $('button').prop('disabled', true);
     }
 
-    vm.returnedNotEvents = true;
-    console.log(vm.loggedIn);
-
     vm.activate = function() {
         // http get request
         var userEventsUrl = "users/" + app.userId + "/events"
         var userEvents = http.get(app.rootUrl + userEventsUrl, {}, app.headers);
         userEvents.done( function (resp) {
-            console.log(resp)
+            console.log(resp);
             vm.events = resp.data;
-            vm.returnedNotEvents = false;
         });
-        userEvents.fail( function () { console.log("Couldn't retrieve user events") } );
+        userEvents.fail( function () {
+            console.log("Couldn't retrieve user events") });
 
         return userEvents;
     }

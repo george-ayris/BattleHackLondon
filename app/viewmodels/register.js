@@ -6,6 +6,7 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(
     vm.password = ko.observable('');
 
     vm.register = function() {
+        $('button').prop('disabled', true);
         var hash = CryptoJS.SHA1(vm.password()).toString();
         var registerUrl = "users/register";
         console.log("hash", hash);

@@ -1,10 +1,10 @@
-define(["durandal/app", "plugins/http", "knockout"], function (app, http, ko) {
+define(["durandal/app", "plugins/http", "plugins/router", "knockout"], function (app, http, router, ko) {
     var vm = {};
     vm.canActivate = function() {
         if (app.loggedIn) {
             return true;
         }
-        return true;
+        return { redirect:'#/login' };
     }
 
     // Want to put a default date in, but bringing in jquery appears to break it
@@ -19,21 +19,24 @@ define(["durandal/app", "plugins/http", "knockout"], function (app, http, ko) {
     vm.cost = ko.observable('');
 
     vm.createEvent = function() {
-        console.log(vm.date());
         var createEventUrl = "events"
+        console.log(app.headers)
         var postResultPromise = http.post(app.rootUrl + createEventUrl,
             {
-                name: vm.name,
-                sport: vm.sport,
+                title: vm.name,
+                activity: vm.sport,
                 description: vm.description,
                 date: vm.sport,
-                minPeople: vm.minPeople,
-                maxPeople: vm.maxPeople,
-                cost: vm.cost
+                min: vm.minPeople,
+                max: vm.maxPeople,
+                price: vm.cost
             },
             app.headers);
         postResultPromise.done( function(resp) {
             console.log("post success", resp);
+            if (resp.status_code === 201) {
+                router.navigate('#/dashboard');
+            }
         });
         postResultPromise.fail( function(resp) { console.log("event post failed", resp) } );
     };

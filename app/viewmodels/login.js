@@ -6,6 +6,7 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(
     vm.password = ko.observable('');
 
     vm.login = function() {
+        $('button').prop('disabled', true);
         var hash = CryptoJS.SHA1(vm.password()).toString();
         var loginUrl = "users/login";
         console.log("hash", hash);
@@ -24,8 +25,9 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(
                  app.headers = { Authorization: "BATTLEHACK " + app.accessKey };
                  app.loggedIn = true;
                  router.navigate('#/dashboard');
+             } else {
+                 console.log('login failed');
              }
-             console.log('login failed');
         });
         postResultPromise.fail( function() { console.log("post failed") } );
     };
