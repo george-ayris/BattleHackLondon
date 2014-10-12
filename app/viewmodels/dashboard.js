@@ -31,16 +31,28 @@ define(["durandal/app", "plugins/http"], function (app, http) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             console.log(pos);
-            var nearEventsUrl = "events/near"
+            var nearEventsUrl = "events/near";
+            console.log(pos.lat() + "," + pos.lng());
             var nearEvents = http.post(app.rootUrl + nearEventsUrl,
                 {
-                    loc: pos.lat + "," + pos.lng,
-                    distance: 60
+                    loc: pos.lat() + "," + pos.lng(),
+                    dis: 1
                 },
                 app.headers);
 
             nearEvents.done(function (resp) {
                 console.log("got near events", resp);
+                if (resp.data) {
+                    $.each(resp.data, function (index, value) {
+                        console.log(value.location.lat);
+                        var markerOptions = {
+                            position: { lat: value.location.lat, lng: value.location.lng },
+                            map: vm.map,
+                            icon: "../../assets/google_maps_marker/blue_MarkerA.png"
+                        }
+                        new google.maps.Marker(markerOptions);
+                    });
+                }
             });
 
             console.log(position.coords.lat);
