@@ -9,7 +9,7 @@
         <i data-bind="text: description" class="event-description"></i>
         <div>Attendees:
             <span data-bind="foreach: users">
-                <a class="label label-primary" data-bind="attr: { href: '#/users/' + $data }, text: $data" />
+                <a class="label label-primary" data-bind="attr: { href: '#/users/' + $data }, text: $data.first_name + ' ' + $data.last_name" />
             </span>
         </div>
         <div>(between <span data-bind="text: minPeople"></span> and <span data-bind="text: maxPeople"></span> required).</div>

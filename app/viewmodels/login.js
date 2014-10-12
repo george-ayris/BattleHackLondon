@@ -2,6 +2,10 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout", "jquery"],
     app.loggedIn = false;
     var vm = {};
 
+    vm.attached = function() {
+        $('button').prop('disabled', false);
+    };
+
     vm.email = ko.observable('');
     vm.password = ko.observable('');
 
@@ -34,7 +38,6 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout", "jquery"],
         postResultPromise.fail( function() {
             console.log("post failed");
             $('button').prop('disabled', false);
-            $('button').prop('active', true);
         });
     };
 
