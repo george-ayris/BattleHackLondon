@@ -48,7 +48,7 @@ define(["durandal/app", "plugins/http"], function (app, http) {
                         var markerOptions = {
                             position: { lat: value.location.lat, lng: value.location.lng },
                             map: vm.map,
-                            icon: "http://res.cloudinary.com/dpohsnuyj/image/upload/v1413107192/pink_MarkerA_plweu2.png"
+                            icon: "https://res.cloudinary.com/dpohsnuyj/image/upload/v1413107192/pink_MarkerA_plweu2.png"
                         }
                         var data = "<a href='#/events/" + value.id + "'>" + value.title + "</a>";
                         var currentMarker = new google.maps.Marker(markerOptions);

@@ -66,7 +66,7 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout"], function 
                 },
                 app.headers);
             postResultPromise.done( function(resp) {
-                console.log("post success", resp);
+                console.log("post success", resp.status_code);
                 if (resp.status_code === 201) {
                     router.navigate('#/dashboard');
                 }
