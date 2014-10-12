@@ -58,7 +58,11 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout"], function 
                     date: vm.date,
                     min: vm.minPeople,
                     max: vm.maxPeople,
-                    price: vm.cost
+                    price: vm.cost,
+                    location: {
+                        lat: vm.lat,
+                        lng: vm.lng
+                    }
                 },
                 app.headers);
             postResultPromise.done( function(resp) {
