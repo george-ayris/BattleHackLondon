@@ -21,7 +21,7 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout", "jquery"],
             vm.dateAndTime = data.activity + " on " + data.date;
             vm.description = data.desc;
             vm.users = data.users;
-            //vm.numPeople = data.users.length;
+            vm.numPeople = data.users.length;
             vm.minPeople = data.min;
             vm.maxPeople = data.max;
             vm.pricePerPerson = "£" + (data.price/vm.numPeople).toFixed(2);
