@@ -11,7 +11,7 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout"], function 
         vm.attached = function() {
             var mapOptions = {
                 center: { lat: 51.5, lng: -0.019},
-                zoom: 14
+                zoom: 16
             };
             vm.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         }

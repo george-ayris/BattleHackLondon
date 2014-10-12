@@ -25,12 +25,23 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout", "jquery"],
             vm.minPeople = data.min;
             vm.maxPeople = data.max;
             vm.pricePerPerson = "£" + (data.price/vm.numPeople).toFixed(2);
+            vm.lat = data.location.lat;
+            vm.lng = data.location.lng;
         });
 
         getRequest.fail(function () { console.log("event get failed") } );
 
         return getRequest;
     };
+
+    vm.attached = function() {
+        var mapOptions = {
+            center: { lat: vm.lat, lng: vm.lng},
+            zoom: 16
+        };
+        vm.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        console.log("map created");
+    }
 
     return vm;
 });
