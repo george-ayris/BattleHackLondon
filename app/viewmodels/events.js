@@ -1,6 +1,13 @@
 define(["durandal/app", "plugins/http", "plugins/router", "knockout", "jquery"], function (app, http, router, ko, $) {
     var vm = {};
 
+    vm.canActivate = function() {
+        if (app.loggedIn) {
+            return true;
+        }
+        return { redirect:'#/login' };
+    };
+
     vm.activate = function() {
         var eventUrl = "events/" + router.activeInstruction().params[0];
 

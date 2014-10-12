@@ -1,4 +1,4 @@
-define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(app, router, http, ko) {
+define(["durandal/app", "plugins/router", "plugins/http", "knockout", "jquery"], function(app, router, http, ko, $) {
     app.loggedIn = false;
     var vm = {};
 
@@ -27,9 +27,15 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(
                  router.navigate('#/dashboard');
              } else {
                  console.log('login failed');
+                 $('button').prop('disabled', false);
+
              }
         });
-        postResultPromise.fail( function() { console.log("post failed") } );
+        postResultPromise.fail( function() {
+            console.log("post failed");
+            $('button').prop('disabled', false);
+            $('button').prop('active', true);
+        });
     };
 
     return vm;

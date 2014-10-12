@@ -13,6 +13,7 @@
                 { route: 'newEvent', hash: '#/newEvent', moduleId: 'viewmodels/newEvent', nav: false },
                 { route: 'events/:id', moduleId: 'viewmodels/events', nav: false },
                 { route: 'register', hash: '#/register', moduleId: 'viewmodels/register', nav: false },
+                { route: 'users/:id', moduleId: 'viewmodels/users', nav: false }
             ]).buildNavigationModel();
 
             return router.activate();
