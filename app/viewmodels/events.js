@@ -22,13 +22,15 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout", "jquery"],
                 vm.dateAndTime = data.activity + " on " + data.date;
                 vm.description = data.desc;
                 vm.users = data.users;
+
                 $.each(vm.users, function (index, value) {
                     console.log(value.id,app.userId);
                     if (value.id === app.userId) {
                         console.log('disabling button');
-                        $('#btn').prop('disabled', true);
+                        $('#joinButton').prop('disabled', true);
                     }
                 });
+
                 vm.numPeople = data.users.length;
                 vm.minPeople = data.min;
                 vm.maxPeople = data.max;

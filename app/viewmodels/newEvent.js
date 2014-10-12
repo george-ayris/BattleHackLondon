@@ -71,7 +71,10 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout"], function 
                     router.navigate('#/dashboard');
                 }
             });
-            postResultPromise.fail( function(resp) { console.log("event post failed", resp) } );
+            postResultPromise.fail( function(resp) {
+                console.log("event post failed", resp)
+                // router.navigate('#/dashboard');
+            });
             return postResultPromise;
         };
     };
