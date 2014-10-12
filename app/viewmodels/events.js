@@ -23,8 +23,10 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout", "jquery"],
                 vm.description = data.desc;
                 vm.users = data.users;
                 $.each(vm.users, function (index, value) {
+                    console.log(value.id,app.userId);
                     if (value.id === app.userId) {
-                        $('button').prop('disabled', true);
+                        console.log('disabling button');
+                        $('#btn').prop('disabled', true);
                     }
                 });
                 vm.numPeople = data.users.length;
