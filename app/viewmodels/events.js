@@ -22,7 +22,7 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout", "jquery"],
         var eventUrl = "events/445915f95c2947e5a70619f9ec61219d";
         var userUrl = "profile/ecbf9d0767d04e619289e25018ae48e6";
 
-        var getRequest = http.get(rootUrl + eventUrl, {}, app.headers);
+        var getRequest = http.get(rootUrl + eventUrl, {}, headers);
 
         getRequest.done(function (resp) {
             console.log(router.activeInstruction().params[0]);

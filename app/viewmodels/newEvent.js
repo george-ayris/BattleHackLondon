@@ -4,7 +4,7 @@ define(["durandal/app", "plugins/http", "knockout"], function (app, http, ko) {
         if (app.loggedIn) {
             return true;
         }
-        return false;
+        return true;
     }
 
     // Want to put a default date in, but bringing in jquery appears to break it

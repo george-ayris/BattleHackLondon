@@ -6,7 +6,7 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(
     vm.password = ko.observable('');
 
     vm.login = function() {
-        var hash = CryptoJS.SHA1(vm.password());
+        var hash = CryptoJS.SHA1(vm.password()).toString();
         var loginUrl = "users/login";
         console.log("hash", hash);
         console.log("email", vm.email());
