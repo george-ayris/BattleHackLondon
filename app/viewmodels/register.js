@@ -6,6 +6,11 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(
     vm.password = ko.observable('');
     vm.firstName = ko.observable('');
     vm.lastName = ko.observable('');
+    vm.DOB = ko.observable('');
+    vm.address = ko.observable('');
+    vm.locality = ko.observable('');
+    vm.region = ko.observable('');
+    vm.postCode = ko.observable('');
 
     vm.register = function() {
         $('button').prop('disabled', true);
@@ -19,7 +24,14 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(
             email: vm.email,
             password: hash,
             first_name: vm.firstName,
-            last_name: vm.lastName
+            last_name: vm.lastName,
+            date_of_birth: vm.DOB,
+            address: {
+                street_address: vm.address,
+                locality: vm.locality,
+                region: vm.region,
+                postal_code: vm.postCOde
+            }
         });
         postResultPromise.done( function(resp) {
              console.log(resp);
