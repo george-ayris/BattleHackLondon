@@ -11,6 +11,7 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(
     vm.locality = ko.observable('');
     vm.region = ko.observable('');
     vm.postCode = ko.observable('');
+    vm.phone = ko.observable('');
 
     vm.register = function() {
         $('button').prop('disabled', true);
@@ -31,7 +32,8 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(
                 locality: vm.locality,
                 region: vm.region,
                 postal_code: vm.postCOde
-            }
+            },
+            phone_number: phone
         });
         postResultPromise.done( function(resp) {
              console.log(resp);
