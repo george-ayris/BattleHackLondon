@@ -20,8 +20,8 @@ define(["durandal/app", "plugins/http", "knockout"], function (app, http, ko) {
 
     vm.createEvent = function() {
         console.log(vm.date());
-        var endPoint = "events"
-        var postResultPromise = http.post(endPoint,
+        var createEventUrl = "events"
+        var postResultPromise = http.post(app.rootUrl + createEventUrl,
             {
                 name: vm.name,
                 sport: vm.sport,
@@ -30,9 +30,12 @@ define(["durandal/app", "plugins/http", "knockout"], function (app, http, ko) {
                 minPeople: vm.minPeople,
                 maxPeople: vm.maxPeople,
                 cost: vm.cost
-            });
-        postResultPromise.done( function() { console.log("post success") } );
-        postResultPromise.fail( function() { console.log("post failed") } );
+            },
+            app.headers);
+        postResultPromise.done( function(resp) {
+            console.log("post success", resp);
+        });
+        postResultPromise.fail( function(resp) { console.log("event post failed", resp) } );
     };
 
     return vm;

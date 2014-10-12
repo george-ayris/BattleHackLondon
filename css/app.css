@@ -1,5 +1,10 @@
-﻿body {
-    padding-top: 70px;
+html {
+    height: 100%;
+}﻿
+
+body {
+    margin-top: 100px;
+    min-height: 100%;
 }
 
 #top-menu.navbar-search {
@@ -48,9 +53,12 @@
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -60px;
+    margin: 60px auto 50px;
 }
 .footer, .push {
     height: 60px;
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
