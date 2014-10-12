@@ -51,7 +51,7 @@ define(["durandal/app", "plugins/router", "plugins/http", "knockout"], function(
         });
         postResultPromise.fail( function() {
             console.log("post failed");
-            $('button').prop('disabled', true);
+            $('button').prop('disabled', false);
         });
     };
 

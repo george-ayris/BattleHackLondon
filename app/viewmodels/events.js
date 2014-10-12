@@ -9,7 +9,8 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout", "jquery"],
     };
 
     vm.activate = function() {
-        var eventUrl = "events/" + router.activeInstruction().params[0];
+        vm.eventId = router.activeInstruction().params[0];
+        var eventUrl = "events/" + vm.eventId;
 
         var getRequest = http.get(app.rootUrl + eventUrl, {}, app.headers);
 
@@ -42,6 +43,14 @@ define(["durandal/app", "plugins/http", "plugins/router", "knockout", "jquery"],
         vm.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         console.log("map created");
     }
+
+    vm.joinEvent = function() {
+        var joinUrl = "events/" + vm.eventId + "/register";
+        var joinRequest = http.post(app.rootUrl + joinUrl, {}, app.headers);
+
+        joinRequest.done(function (resp) { console.log("joined event", resp); })
+        joinRequest.fail(function (resp) { console.log("failed join post", resp); });
+    };
 
     return vm;
 });

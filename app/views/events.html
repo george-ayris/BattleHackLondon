@@ -1,5 +1,14 @@
 <div class="page-header">
-    <h1 data-bind="text: eventTitle"></h1>
+    <div class="row">
+        <h1>
+            <span data-bind="text: eventTitle"></span>
+            <span class="pull-right">
+                <button class="btn btn-default" data-bind="click: joinEvent">
+                    Join event
+                </button>
+            </span>
+        </h1>
+    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -9,7 +18,7 @@
         <i data-bind="text: description" class="event-description"></i>
         <div>Attendees:
             <span data-bind="foreach: users">
-                <a class="label label-primary" data-bind="attr: { href: '#/users/' + $data }, text: $data.first_name + ' ' + $data.last_name" />
+                <a class="label label-primary" data-bind="attr: { href: '#/users/' + $data.id }, text: $data.first_name + ' ' + $data.last_name" />
             </span>
         </div>
         <div>(between <span data-bind="text: minPeople"></span> and <span data-bind="text: maxPeople"></span> required).</div>
